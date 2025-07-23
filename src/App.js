@@ -1,23 +1,20 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react';
+import ArticleForm from './components/ArticleForm';
+import ArticleList from './components/ArticleList';
 
 function App() {
+  const [refresh, setRefresh] = useState(false);
+
+  const handleArticleCreated = () => {
+    setRefresh(!refresh);
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <h1>Article Creator</h1>
+      <ArticleForm onArticleCreated={handleArticleCreated} />
+      <h2>Articles</h2>
+      <ArticleList refresh={refresh} />
     </div>
   );
 }
